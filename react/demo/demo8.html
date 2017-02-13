@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo8状态</title>
+    <script src="../lib/react.js" ></script>
+    <script src="../lib/react-dom.js" ></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var LinkButton = React.createClass({
+        getInitialState:function () {
+            return {linked:false}
+        },
+        handleClick:function(){
+           this.setState({linked:!this.state.linked}) ;
+        },
+        render:function(){
+            var text = this.state.linked?"like":'haven\'t liked';
+            return <p onClick={this.handleClick}>You {text} this  Click to toggle.</p>
+        }
+    })
+    ReactDOM.render(
+            <LinkButton/>,
+            document.getElementById("example")
+    )
+</script>
+</body>
+</html>

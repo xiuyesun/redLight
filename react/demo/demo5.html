@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo5 组件子节点</title>
+    <script src="../lib/react.js" ></script>
+    <script src="../lib/react-dom.js" ></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var NodeList = React.createClass({
+        render:function(){
+            return (<ul>
+                {
+                        React.Children.map(this.props.children,function(child){
+                            return <li>{child}</li>;
+                        })
+                }
+            </ul>);
+        }
+    });
+    ReactDOM.render(
+            <NodeList>
+                <span>zhangsan</span>
+                <span>李四</span>
+                <span>王五</span>
+                <span>找死</span>
+            </NodeList>,
+            document.body
+    );
+</script>
+</body>
+</html>

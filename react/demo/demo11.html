@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo11AJAX</title>
+    <script src="../lib/jquery.js" ></script>
+    <script src="../lib/react.js" ></script>
+    <script src="../lib/react-dom.js" ></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var UserGist = React.createClass({
+        getInitialState:function(){
+            return {userName:"",lastGistUrl:""}
+        },
+        componentDidMount:function(){
+            $.get(this.props.srounce,function(data){
+                var lastGist = data[0];
+                if(this.isMounted()){
+                    this.setState({userName:lastGist.owner.login,lastGistUrl:lastGist.html_url});
+                }
+            }.bind(this));
+        },
+        render:function(){
+            return <div>{this.state.userName}'s last gist is {this.state.lastGistUrl} here!</div>
+        }
+    })
+    ReactDOM.render(
+            <UserGist srounce="https://api.github.com/users/octocat/gists" />,
+    document.getElementById("example")
+    )
+</script>
+</body>
+</html>
